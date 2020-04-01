@@ -1,0 +1,27 @@
+{
+  "name": "a-responsive-containers",
+  "version": "1.0.1",
+  "description": "Responsive containers",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "npm run open",
+    "open": "webpack-dev-server --config ./dev/src/webpack.config.js --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrey-brill/a-responsive-containers"
+  },
+  "author": "Andrey Brill <andrey@a-brill.com> (https://github.com/andrey-brill)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andrey-brill/a-responsive-containers/issues"
+  },
+  "homepage": "https://github.com/andrey-brill/a-responsive-containers",
+  "keywords": [
+    "responsive",
+    "containers",
+    "pixel"
+  ],
+  "devDependencies": {},
+  "dependencies": {}
+}
