@@ -105,7 +105,7 @@ export class Svg {
         this.insertBefore(toMove[toMove.length - 1], newTarget);
 
         for (let child of toMove) {
-            toMove.parentElement.removeChild(child);
+            child.parentElement.removeChild(child);
             clipPath.appendChild(child);
         }
 

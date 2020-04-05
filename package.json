@@ -1,26 +1,28 @@
 {
-  "name": "a-responsive-containers",
+  "name": "a-floating-colors",
   "version": "1.0.1",
-  "description": "Responsive containers",
-  "main": "src/index.js",
+  "description": "JavaScript library for creating floating colors inside SVG-images via SMIL animations",
+  "main": "entry/entry.js",
   "scripts": {
     "start": "npm run open",
-    "open": "webpack-dev-server --config ./dev/src/webpack.config.js --open"
+    "open": "webpack-dev-server --config ./examples/src/webpack.config.js --env.mode development --open"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/andrey-brill/a-responsive-containers"
+    "url": "https://github.com/andrey-brill/a-floating-colors"
   },
   "author": "Andrey Brill <andrey@a-brill.com> (https://github.com/andrey-brill)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andrey-brill/a-responsive-containers/issues"
+    "url": "https://github.com/andrey-brill/a-floating-colors/issues"
   },
-  "homepage": "https://github.com/andrey-brill/a-responsive-containers",
+  "homepage": "https://github.com/andrey-brill/a-floating-colors",
   "keywords": [
-    "responsive",
-    "containers",
-    "pixel"
+    "floating",
+    "colors",
+    "svg",
+    "animation",
+    "smil"
   ],
   "devDependencies": {},
   "dependencies": {}
