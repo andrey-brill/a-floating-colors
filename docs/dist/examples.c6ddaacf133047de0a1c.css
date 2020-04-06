@@ -1,0 +1,59 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+}
+
+.responsive {
+    max-width: 1000px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding-left: 10vw;
+    padding-right: 10vw;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}
+
+.row div {
+    flex: 1;
+}
+
+.header svg {
+    margin-top: 15vh;
+    margin-bottom: 4vh;
+    max-height: 30vmax;
+}
+
+#root {
+    margin-bottom: 15vh;
+}
+
+svg {
+    max-height: 30vmax;
+}
+
+#topLeft #circle {
+    fill: none;
+    stroke: #333333;
+    stroke-width: 16px;
+}
+
+#topRight #logo {
+    fill: #333333;
+}
+
+#bottomLeft #logo {
+    fill: white;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+      flex-direction: column !important;
+    }
+  }
