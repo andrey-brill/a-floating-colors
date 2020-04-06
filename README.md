@@ -1,11 +1,11 @@
 
-<!-- <img src='https://andrey-brill.github.io/floating-colors/assets/logo-and-text.svg' width="100%" alt='Floating Colors'/> -->
+<img src='https://andrey-brill.github.io/a-floating-colors/svg/logo.0.svg' width="100%" alt='Floating Colors'/>
 
 __JavaScript library for creating floating colors inside SVG-images via SMIL animations.__
 
 ## Examples
 
-<a target='_blank' href='https://andrey-brill.github.io/floating-colors/'>Show me example!</a>
+<a target='_blank' href='https://andrey-brill.github.io/a-floating-colors/'>Show me example!</a>
 
 ## Usage
 
@@ -20,17 +20,40 @@ npm install a-floating-colors --save
 As module in __modern__ web-project
 
 ```js
-import * as AFloatingColors from 'a-floating-colors';
+import { colorify } from 'a-floating-colors';
+
+// ...
+
+colorify(svgEl, {
+    floatingColors: ['#FF00FF', '#00FFFF', '#FFFF00', '#FF0000']
+});
+
 ```
 
-As global variable `window.FloatingColors`
+### Options
 
-```html
-  <script src="dist/floating-colors.min.js"></script>
+```js
+
+    let {
+        initialColor,  // color that will not be included to infinite repeat
+        floatingColors,  // required
+
+        targetId,  // if null - whole svg
+        targetConvertTo,  // null or clipPath
+
+        targetFill, // set fill
+        targetStroke, // set stroke
+        targetStrokeWidth, // set width
+
+        gradientAngle = 0,  // degree
+        gradientUseAs = 'fill',  // fill or stroke
+
+        animationDelay = 0,  // delay before animation will run
+        animationTransition = 3000  // ms to switch from one color to another
+     } = options;
+
 ```
 
-### Creating clipPath in SVG-image
+### NB! targetConvertTo: clipPath
 
-
-__NB!__ Be careful making this step - not all tags can be placed into `clipPath` tag.
-This is the reason why this step is _manual_.
+Be careful making this step - not all tags can be placed into `clipPath` tag.

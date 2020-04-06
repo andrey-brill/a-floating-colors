@@ -35,3 +35,46 @@ colorifySvg('header', {
     targetConvertTo: 'clipPath',
     floatingColors: ['#FF00FF', '#00FFFF', '#FFFF00', '#FF0000']
 });
+
+const transparent = 'rgba(255,255,255,0)';
+
+colorifySvg('topLeft', {
+    targetId: 'logo',
+    targetConvertTo: 'clipPath',
+    floatingColors: ['#FF00FF', '#00FFFF'],
+    animationTransition: 1000
+});
+
+colorifySvg('topRight', {
+    initialColor: transparent,
+    targetId: 'circle',
+    targetFill: 'none',
+    targetStrokeWidth: '16px',
+    gradientUseAs: 'stroke',
+    gradientAngle: 90,
+    floatingColors: ['#FF00FF', '#00FFFF'],
+    animationDelay: 3000
+});
+
+colorifySvg('bottomLeft', {
+    initialColor: transparent,
+    targetId: 'circle',
+    gradientAngle: 135,
+    floatingColors: ['#FF00FF', '#00FFFF'],
+    animationDelay: 7000
+});
+
+colorifySvg('bottomRight', {
+    initialColor: transparent,
+    targetId: 'logo',
+    floatingColors: ['#FFFFFF', '#333333'],
+    animationDelay: 10000
+});
+
+colorifySvg('bottomRight', {
+    initialColor: transparent,
+    targetId: 'circle',
+    floatingColors: ['#FF0000', '#FF00FF', '#00FFFF', '#FF00FF'],
+    gradientAngle: -180,
+    animationDelay: 10000
+});

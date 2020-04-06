@@ -117,7 +117,10 @@ export class Svg {
         const el = document.createElementNS(this.svg.namespaceURI, tagName);
 
         for (let key in attributes) {
-            el.setAttribute(key, attributes[key]);
+            const value = attributes[key];
+            if (value !== undefined) {
+                el.setAttribute(key, value);
+            }
         }
 
         return el;

@@ -5,7 +5,8 @@
   "main": "entry/entry.js",
   "scripts": {
     "start": "npm run open",
-    "open": "webpack-dev-server --config ./examples/src/webpack.config.js --env.mode development --open"
+    "open": "webpack-dev-server --config ./examples/src/webpack.config.js --env.mode development --open",
+    "build-examples": "webpack --config ./examples/src/webpack.config.js --env.mode production"
   },
   "repository": {
     "type": "git",

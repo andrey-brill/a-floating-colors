@@ -13,10 +13,12 @@ export function colorify (svgEl, options = {}) {
         targetId,  // if null - whole svg
         targetConvertTo,  // null or clipPath
 
+        targetFill, // set fill
+        targetStroke, // set stroke
+        targetStrokeWidth, // set width
+
         gradientAngle = 0,  // degree
         gradientUseAs = 'fill',  // fill or stroke
-
-        stopOpacity = 1, // default gradient stop opacity
 
         animationDelay = 0,  // delay before animation will run
         animationTransition = 3000  // ms to switch from one color to another
@@ -26,73 +28,95 @@ export function colorify (svgEl, options = {}) {
         throw new Error('At least two colors should be defined');
     }
 
-    if (!initialColor) {
-        initialColor = floatingColors.shift();
-        floatingColors.push(initialColor);
-    }
-
     if (floatingColors[0] !== floatingColors[floatingColors.length - 1]) {
         floatingColors.push(floatingColors[0]); // closing colors to make possible infinite animation
     }
 
     const target = svg.resolveTarget(targetId, targetConvertTo);
 
+    const anglePI = (gradientAngle - 270) * (Math.PI / 180);
+
     const linearGradient = svg.appendElementTo(svg.defs, 'linearGradient', {
         id: svg.uniqueId(),
-        y1: '50%',
-        y2: '50%',
-        gradientTransform: `rotate(${gradientAngle})`
+        'x1': Math.round(50 + Math.sin(anglePI) * 50) + '%',
+        'y1': Math.round(50 + Math.cos(anglePI) * 50) + '%',
+        'x2': Math.round(50 + Math.sin(anglePI + Math.PI) * 50) + '%',
+        'y2': Math.round(50 + Math.cos(anglePI + Math.PI) * 50) + '%'
     });
+
+    let begin = animationDelay + 'ms';
 
     const fromStop = svg.appendElementTo(linearGradient, 'stop', {
         offset: '0%',
-        'stop-opacity': stopOpacity,
-        'stop-color': initialColor
+        'stop-opacity': 1,
+        'stop-color': initialColor || floatingColors[0]
     });
 
     const toStop = svg.appendElementTo(linearGradient, 'stop', {
         offset: '100%',
-        'stop-opacity': stopOpacity,
-        'stop-color': initialColor
+        'stop-opacity': 1,
+        'stop-color': initialColor || floatingColors[0]
     });
 
-    const initialColors = [initialColor, floatingColors[0]];
-    const fromInitialAnimation = svg.appendElementTo(fromStop, 'animate', {
-        id: svg.uniqueId(),
-        attributeName: 'stop-color',
-        values: colorsToStopValue(initialColors, true),
-        dur: animationDuration(initialColors, animationTransition),
-        begin: animationDelay + 'ms'
-    });
+    if (initialColor) {
 
-    const toInitialAnimation = svg.appendElementTo(toStop, 'animate', {
-        id: svg.uniqueId(),
-        attributeName: 'stop-color',
-        values: colorsToStopValue(initialColors, false),
-        dur: animationDuration(initialColors, animationTransition),
-        begin: animationDelay + 'ms'
-    });
+        const initialColors = [initialColor, floatingColors[0]];
+        svg.appendElementTo(fromStop, 'animate', {
+            attributeName: 'stop-color',
+            values: colorsToStopValue(initialColors, true),
+            dur: animationDuration(initialColors, animationTransition),
+            begin
+        });
+
+        const toInitialAnimation = svg.appendElementTo(toStop, 'animate', {
+            id: svg.uniqueId(),
+            attributeName: 'stop-color',
+            values: colorsToStopValue(initialColors, false),
+            dur: animationDuration(initialColors, animationTransition),
+            begin
+        });
+
+        begin = toInitialAnimation.id + '.end';
+
+    }
 
     svg.appendElementTo(fromStop, 'animate', {
         attributeName: 'stop-color',
         values: colorsToStopValue(floatingColors, true),
         dur: animationDuration(floatingColors, animationTransition),
-        begin: fromInitialAnimation.id + '.end',
-        repeatCount: 'indefinite'
+        repeatCount: 'indefinite',
+        begin
     });
 
     svg.appendElementTo(toStop, 'animate', {
         attributeName: 'stop-color',
         values: colorsToStopValue(floatingColors, false),
         dur: animationDuration(floatingColors, animationTransition) ,
-        begin: toInitialAnimation.id + '.end',
-        repeatCount: 'indefinite'
+        repeatCount: 'indefinite',
+        begin
     });
 
-    target.setAttribute(gradientUseAs, `url(#${linearGradient.id})`);
+    if (gradientUseAs === 'fill') {
+        targetFill = `url(#${linearGradient.id})`;
+    } else if (gradientUseAs === 'stroke') {
+        targetStroke = `url(#${linearGradient.id})`;
+    } else {
+        throw new Error('Unknown gradientUseAs: ' + gradientUseAs);
+    }
+
+    if (targetFill) {
+        target.setAttribute('fill', targetFill);
+    }
+
+    if (targetStroke) {
+        target.setAttribute('stroke', targetStroke);
+    }
+
+    if (targetStrokeWidth) {
+        target.setAttribute('stroke-width', targetStrokeWidth);
+    }
 
 }
-
 
 function colorsToStopValue (colors, isFrom) {
 

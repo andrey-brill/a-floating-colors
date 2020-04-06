@@ -38,6 +38,19 @@ svg {
     max-height: 30vmax;
 }
 
+#topLeft #circle {
+    fill: none;
+    stroke: #333333;
+    stroke-width: 16px;
+}
+
+#topRight #logo {
+    fill: #333333;
+}
+
+#bottomLeft #logo {
+    fill: white;
+}
 
 @media only screen and (max-width: 768px) {
     .row {
