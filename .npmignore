@@ -2,5 +2,6 @@
 .vs
 .github
 .gitignore
-dev
+docs
+build
 node_modules
