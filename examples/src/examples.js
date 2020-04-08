@@ -26,14 +26,16 @@ const pageTemplate = `
 document.getElementById('root').innerHTML = pageTemplate;
 
 function colorifySvg (parentId, options) {
-    colorify(document.getElementById(parentId).children[0], options);
+    return colorify(document.getElementById(parentId).children[0], options);
 }
 
-// Github Readme Logo
-
-colorifySvg('header', {
+const { pause, unpause, isPaused } = colorifySvg('header', {
     targetConvertTo: 'clipPath',
     floatingColors: ['#FF00FF', '#00FFFF', '#FFFF00', '#FF0000']
+});
+
+document.getElementById('header').addEventListener('click', function () {
+    (isPaused() ? unpause : pause)();
 });
 
 const transparent = 'rgba(255,255,255,0)';

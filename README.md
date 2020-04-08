@@ -20,12 +20,18 @@ npm install a-floating-colors --save
 As module in __modern__ web-project
 
 ```js
+
 import { colorify } from 'a-floating-colors';
 
-// ...
 
-colorify(svgEl, {
+const svgEl = document.getElementById('svg');
+
+const { pause, unpause, isPaused } = colorify(svgEl, {
     floatingColors: ['#FF00FF', '#00FFFF', '#FFFF00', '#FF0000']
+});
+
+svgEl.addEventListener('click', function () {
+    (isPaused() ? unpause : pause)();
 });
 
 ```

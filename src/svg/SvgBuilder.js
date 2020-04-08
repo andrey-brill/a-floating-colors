@@ -1,6 +1,6 @@
 
 
-export class Svg {
+export class SvgBuilder {
 
     constructor (svg) {
 

@@ -1,6 +1,6 @@
 {
   "name": "a-floating-colors",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "JavaScript library for creating floating colors inside SVG-images via SMIL animations",
   "main": "entry/entry.js",
   "scripts": {
