@@ -2,7 +2,7 @@
 import './index.css';
 import logo from './svg/logo.svg';
 import circle from './svg/logo-circle.svg';
-import { colorify } from '../../src/index.js';
+import { colorify } from '../../@src/index.js';
 
 
 const pageTemplate = `

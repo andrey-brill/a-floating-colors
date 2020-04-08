@@ -1,7 +1,5 @@
-.vscode
-.vs
-.github
-.gitignore
+
+.git
 docs
 build
 node_modules
